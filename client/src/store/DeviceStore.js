@@ -13,8 +13,8 @@ export default class DeviceStore {
             {id: 2, name: 'Nokia'}
         ];
         this._devices = [
-            {id: 5, name: 'Fridge 5'},
-            {id: 6, name: 'Fridge 6'}
+            {id: 5, name: 'Fridge 5', raiting: 6, price: 1200, img: 'https://www.birite.com.au/wp-content/uploads/Teco-TFF210WNTBM-210L-Top-Mount-White-Fridge-Main.jpg'},
+            {id: 6, name: 'Fridge 6', raiting: 5, price: 1200, img: 'https://www.birite.com.au/wp-content/uploads/Teco-TFF210WNTBM-210L-Top-Mount-White-Fridge-Main.jpg'}
         ];
         this._selectedType = {};
         this._selectedBrand = {};
