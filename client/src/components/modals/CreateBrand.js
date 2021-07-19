@@ -1,8 +1,18 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { observer } from "mobx-react-lite";
 import { Modal, Button, Form } from 'react-bootstrap';
+import { createBrand } from '../../http/deviceAPI';
 
 export const CreateBrand = ({show, onHide}) => {
+    let [value, setValue] = useState('');
+    const addBrand = () => {
+        createBrand({name: value}).then(data => {
+            setValue('');
+            onHide();
+        });
+    }
+
+
     return (
         <Modal
             show={show}
@@ -17,12 +27,12 @@ export const CreateBrand = ({show, onHide}) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Control placeholder="Add the name of the new type"></Form.Control>
+                    <Form.Control value={value} onChange={(e) => setValue(e.target.value)} placeholder="Add the name of the new type"></Form.Control>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant={"outline-danger"} onClick={onHide}>Close</Button>
-                <Button variant={"outline-success"} onClick={onHide}>Add</Button>
+                <Button variant={"outline-success"} onClick={addBrand}>Add</Button>
             </Modal.Footer>
         </Modal>
     );

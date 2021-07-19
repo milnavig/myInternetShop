@@ -18,6 +18,9 @@ export default class DeviceStore {
         ];
         this._selectedType = {};
         this._selectedBrand = {};
+        this._page = 1;
+        this._totalCount = 0;
+        this._limit = 3;
         makeAutoObservable(this);
     }
 
@@ -41,6 +44,18 @@ export default class DeviceStore {
         this._selectedBrand = brand
     }
 
+    setPage(page) {
+        this._page = page
+    }
+
+    setTotalCount(total) {
+        this._total = total
+    }
+
+    setLimit(limit) {
+        this._limit = limit
+    }
+
     get types() {
         return this._types
     }
@@ -55,5 +70,14 @@ export default class DeviceStore {
     }
     get selectedBrand() {
         return this._selectedBrand
+    }
+    get page() {
+        return this._page
+    }
+    get total() {
+        return this._total
+    }
+    get limit() {
+        return this._limit
     }
 }
