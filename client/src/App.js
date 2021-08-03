@@ -8,10 +8,11 @@ import { useContext, useEffect, useState } from 'react';
 import { Context } from './index';
 import { check } from './http/userAPI';
 import { Spinner } from 'react-bootstrap';
+import Footer from './components/Footer';
 
 function App() {
   const { user } = useContext(Context);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     check().then((data) => {
@@ -30,6 +31,7 @@ function App() {
     <BrowserRouter>
       <NavBar></NavBar>
       <AppRouter></AppRouter>
+      <Footer></Footer>
     </BrowserRouter>
   );
 }
