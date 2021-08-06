@@ -9,8 +9,8 @@ const generate_gwt = (id, email, role) => {
 
 class UserController {
     async registration(req, res, next) {
-        const {email, password, role} = req.body;
-        if (!email || !password) {
+        const {email, password, username, role} = req.body;
+        if (!email || !password || !username) {
             next(ApiError.badRequest('Incorrect email or password'));
         }
 
@@ -20,10 +20,10 @@ class UserController {
         }
 
         const hashPassword = await bcrypt.hash(password, 5);
-        const user = await User.create({email, role, password: hashPassword});
+        const user = await User.create({email, role, username, password: hashPassword});
         const basket = await Basket.create({userId: user.id});
 
-        const token = generate_gwt(user.id, user.email, user.role);
+        const token = generate_gwt(user.id, user.email, user.username, user.role);
 
         return res.json({token});
     }

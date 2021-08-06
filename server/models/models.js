@@ -12,6 +12,9 @@ const User = sequelize.define('user', {
     password: {
         type: DataTypes.STRING
     },
+    username: {
+        type: DataTypes.STRING, unique: true
+    },
     role: {
         type: DataTypes.STRING,
         defaultValue: 'USER'
@@ -63,6 +66,12 @@ const TypeBrand = sequelize.define('type_brand', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 });
 
+const Comment = sequelize.define('comment', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    text: {type: DataTypes.STRING, allowNull: false},
+    timestamp: {type: DataTypes.DATE, defaultValue: DataTypes.NOW},
+});
+
 User.hasOne(Basket);
 Basket.belongsTo(User);
 
@@ -90,6 +99,11 @@ DeviceInfo.belongsTo(Device);
 Type.belongsToMany(Brand, {through: TypeBrand });
 Brand.belongsToMany(Type, {through: TypeBrand });
 
+Device.hasMany(Comment);
+Comment.belongsTo(Device);
+User.hasMany(Comment);
+Comment.belongsTo(User);
+
 
 module.exports = {
     User,
@@ -100,5 +114,6 @@ module.exports = {
     Brand,
     Rating,
     TypeBrand,
-    DeviceInfo
+    DeviceInfo,
+    Comment
 }

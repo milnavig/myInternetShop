@@ -66,6 +66,25 @@ class DeviceController {
         });
         return res.json(device);
     }
+
+    async like(req, res, next) {
+        try {
+            let {id, rating} = req.body;
+
+            let device = await Device.findOne({
+                where: {id}
+            });
+
+            let new_rating = (rating + device.rating) / 2;
+
+            device = await Device.update({rating: new_rating},
+                { where: { id: id } });
+
+            return res.json(device);
+        } catch(err) {
+            next(APIError.badRequest(err.message));
+        }
+    }
 }
 
 module.exports = new DeviceController();

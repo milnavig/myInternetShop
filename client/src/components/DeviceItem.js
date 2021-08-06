@@ -20,6 +20,7 @@ export const DeviceItem = observer(({device}) => {
                         </div>
                         <Image src={star} width={20} height={20}></Image>
                     </div>
+                    
                 </div>
                 <div>
                     {device.name}

@@ -21,6 +21,7 @@ export default class DeviceStore {
         this._page = 1;
         this._totalCount = 0;
         this._limit = 3;
+        this._likedDevice = [];
         makeAutoObservable(this);
     }
 
@@ -58,6 +59,16 @@ export default class DeviceStore {
         this._limit = limit
     }
 
+    setLikedDevice(obj) {
+        let arr = this._likedDevice.filter((el) => el.id === obj.id);
+        if (arr.length !== 0) {
+            arr[0].rating = obj.rating;
+        }
+        else {
+            this._likedDevice.push(obj);
+        }
+    }
+
     get types() {
         return this._types
     }
@@ -81,5 +92,8 @@ export default class DeviceStore {
     }
     get limit() {
         return this._limit
+    }
+    get likedDevice() {
+        return this._likedDevice
     }
 }
