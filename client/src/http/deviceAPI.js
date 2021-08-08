@@ -35,3 +35,8 @@ export const fetchOneDevice = async (id) => {
     const { data } = await $host.get('api/device/' + id);
     return data;
 }
+
+export const sendDeviceRating = async (obj) => {
+    const { data } = await $host.post('api/device/action/like', obj);
+    return data;
+}

@@ -13,6 +13,7 @@ const Auth = observer(() => {
     const isLogin = location.pathname === LOGIN_ROUTE;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
     const history = useHistory();
 
     const click = async () => {
@@ -22,7 +23,7 @@ const Auth = observer(() => {
                 const data = await login(email, password);
             }
             else {
-                const data = await registration(email, password);
+                const data = await registration(email, password, username);
                 console.log(data);
             }
             user.setUser(data);
@@ -40,12 +41,18 @@ const Auth = observer(() => {
             <Card style={{width: 600}} className="p-5">
                 <h2 className="m-auto">{ isLogin ? 'Authorization' : 'Registration' }</h2>
                 <Form className="d-flex flex-column">
+                    { isLogin || 
+                    <Form.Control className="mt-4"
+                    placeholder="Enter your username" value={username} onChange={(e) => setUsername(e.target.value)}>
+                    </Form.Control>
+                    }
                     <Form.Control className="mt-4"
                     placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)}>
                     </Form.Control>
                     <Form.Control className="mt-4"
                     placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} type="password">
                     </Form.Control>
+
                     <Row className="d-flex justify-content-between mt-4">
                         { isLogin ? 
                         <div style={{display: 'inline'}}>
@@ -56,7 +63,7 @@ const Auth = observer(() => {
                             Have your own account? <NavLink to={LOGIN_ROUTE} >Login!</NavLink>
                         </div>
                         }
-                        <Button variant="outline-success" onClick={isLogin ? click : click}>{isLogin ? 'Enter' : 'Register'}</Button>
+                        <Button variant="outline-success" className="mt-2" onClick={isLogin ? click : click}>{isLogin ? 'Enter' : 'Register'}</Button>
                     </Row>
                     
                 </Form>
