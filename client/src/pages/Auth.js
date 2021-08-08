@@ -20,12 +20,13 @@ const Auth = observer(() => {
         try {
             let data;
             if (isLogin) {
-                const data = await login(email, password);
+                data = await login(email, password);
             }
             else {
-                const data = await registration(email, password, username);
+                data = await registration(email, password, username);
                 console.log(data);
             }
+            
             user.setUser(data);
             user.setIsAuth(true);
             history.push(SHOP_ROUTE);

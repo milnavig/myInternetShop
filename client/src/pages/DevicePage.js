@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Image, Row, Table } from "react-bootstrap";
 import star from '../assets/star.png';
 import { useParams } from 'react-router-dom';
 import { fetchOneDevice, sendDeviceRating } from "../http/deviceAPI";
@@ -37,7 +37,7 @@ const DevicePage = observer(() => {
                 </Col>
                 <Col md={4} className="d-flex flex-column align-items-center">
                     <Row style={{height: '100%'}}>
-                        <h2>{device.name}</h2>
+                        <h2>{device.brand?.name + ' ' + device.name}</h2>
                         <div className="d-flex align-content-between flex-wrap">
 
                             <StarRatings
@@ -61,11 +61,23 @@ const DevicePage = observer(() => {
                 </Col>
             </Row>
             <Row className="d-flex flex-column m-3">
-                {device.info.map(d => 
-                    <Row key={d.id}>
-                        {d.title} : {d.description}
-                    </Row>
-                )}
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                        <th>Characteristics</th>
+                        <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {device.info.map(d => 
+                            <tr key={d.id}>
+                                <td>{d.title}</td>
+                                <td>{d.description}</td>
+                            </tr>
+                        )}
+                        
+                    </tbody>
+                </Table>
             </Row>
             <Row className="d-flex flex-column m-3">
                 <Comments deviceId={ params.id }>

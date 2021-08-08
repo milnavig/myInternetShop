@@ -20,7 +20,7 @@ export default class DeviceStore {
         this._selectedBrand = {};
         this._page = 1;
         this._totalCount = 0;
-        this._limit = 3;
+        this._limit = 4;
         this._likedDevice = [];
         makeAutoObservable(this);
     }
@@ -52,7 +52,7 @@ export default class DeviceStore {
     }
 
     setTotalCount(total) {
-        this._total = total
+        this._totalCount = total
     }
 
     setLimit(limit) {
@@ -88,7 +88,7 @@ export default class DeviceStore {
         return this._page
     }
     get total() {
-        return this._total
+        return this._totalCount
     }
     get limit() {
         return this._limit

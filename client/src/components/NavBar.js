@@ -13,6 +13,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 const NavBar = observer(() => {
     const {user} = useContext(Context);
     const history = useHistory();
+    console.log(user.user);
 
     const logout = () => {
         user.setUser({});
@@ -54,7 +55,7 @@ const NavBar = observer(() => {
                     user.isAuth ? 
                     <Nav className="ms-auto p-2 bd-highlight" style={{color: 'white'}}>
                         <Button variant={"outline-light"} onClick={logout} style={{margin: 3}}>Log out</Button>
-                        <Button variant={"outline-light"} onClick={() => history.push(ADMIN_ROUTE)} style={{margin: 3}}>Admin dashboard</Button>
+                        { user.user.role === 'ADMIN' ? <Button variant={"outline-light"} onClick={() => history.push(ADMIN_ROUTE)} style={{margin: 3}}>Admin dashboard</Button> : undefined}
                     </Nav>
                     :
                     <Nav className="ms-auto p-2 bd-highlight" style={{color: 'white'}}>

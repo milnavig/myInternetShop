@@ -15,20 +15,25 @@ const Shop = observer(() => {
     useEffect(() => {
         fetchTypes().then((t) => device.setTypes(t));
         fetchBrands().then((t) => device.setBrands(t));
-        fetchDevices(null, null, 1, 3).then((t) => {
+        fetchDevices(null, null, 1, 4).then((t) => {
             device.setDevices(t.rows);
             device.setTotalCount(t.count);
         });
     }, []);
 
     useEffect(() => {
-        fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, 3).then((t) => {
-            console.log(t.rows);
+        fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, 4).then((t) => {
+            console.log(t.count);
             device.setDevices(t.rows);
             device.setTotalCount(t.count);
+            console.log(device.total);
         });
         console.log({...device.selectedBrand}.id);
         console.log({...device.selectedType});
+
+        //console.log(device.page);
+        //console.log(device.total);
+        //console.log(device.limit);
     }, [device.page, device.selectedType, device.selectedBrand]);
 
     return (

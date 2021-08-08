@@ -2,7 +2,7 @@ import {$host, $authHost} from './index';
 import jwt_decode from 'jwt-decode';
 
 export const registration = async (email, password, username) => {
-    const { data } = await $host.post('api/user/registration', {email, password, username, role: 'ADMIN'});
+    const { data } = await $host.post('api/user/registration', {email, password, username, role: 'USER'});
     localStorage.setItem('token', data.token);
     return jwt_decode(data.token);
 }
@@ -10,6 +10,7 @@ export const registration = async (email, password, username) => {
 export const login = async (email, password) => {
     const { data } = await $host.post('api/user/login', {email, password});
     localStorage.setItem('token', data.token);
+    console.log(data.token);
     return jwt_decode(data.token);
 }
 

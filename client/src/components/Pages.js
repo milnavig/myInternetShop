@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 
 const Pages = observer(() => {
     const {device} = useContext(Context);
-    const pagesCount = Math.ceil(device.totalCount / device.limit);
+    const pagesCount = Math.ceil(device.total / device.limit);
     const pages = [];
 
     for (let i = 0; i < pagesCount; i++) {
@@ -16,12 +16,13 @@ const Pages = observer(() => {
     }
 
     return (
-        <Pagination className="m-t-5">
+        <Pagination className="m-t-5 mt-2">
             {pages.map(page => {
                 return <Pagination.Item
                 key={page}
                 active={device.page === page}
-                onClick={() => device.setPage(page)}>
+                onClick={() => device.setPage(page)}
+                activeLabel="">
                     {page}
                 </Pagination.Item>
             })}

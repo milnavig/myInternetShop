@@ -63,7 +63,7 @@ export default class Chat extends Component {
         return (<div>
             <Launcher
             agentProfile={{
-                teamName: 'react-chat-window',
+                teamName: 'Chat with us',
                 imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
             }}
             onMessageWasSent={this._onMessageWasSent.bind(this)}

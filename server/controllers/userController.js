@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {User, Basket} = require('../models/models');
 
-const generate_gwt = (id, email, role) => {
-    return jwt.sign({id: id, email, role}, process.env.SECRET_KEY, {expiresIn: '24h'});
+const generate_gwt = (id, email, username, role) => {
+    return jwt.sign({id: id, email, username, role}, process.env.SECRET_KEY, {expiresIn: '24h'});
 }
 
 class UserController {
@@ -22,7 +22,6 @@ class UserController {
         const hashPassword = await bcrypt.hash(password, 5);
         const user = await User.create({email, role, username, password: hashPassword});
         const basket = await Basket.create({userId: user.id});
-
         const token = generate_gwt(user.id, user.email, user.username, user.role);
 
         return res.json({token});
@@ -40,7 +39,7 @@ class UserController {
             return next(ApiError.internal('Incorrect password!'));
         }
 
-        const token = generate_gwt(user.id, user.email, user.role);
+        const token = generate_gwt(user.id, user.email, user.username, user.role);
         return res.json({token});
     }
 
@@ -54,7 +53,7 @@ class UserController {
 
         res.json(query);
         */
-        const token = generate_gwt(req.user.id, req.user.email, req.user.role);
+        const token = generate_gwt(req.user.id, req.user.email, req.user.username, req.user.role);
         return res.json({token});
     }
 }
