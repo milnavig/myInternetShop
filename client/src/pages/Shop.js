@@ -5,6 +5,7 @@ import { Context } from "../index";
 import { BrandBar } from "../components/BrandBar";
 import { DeviceList } from "../components/DeviceList";
 import { TypeBar } from "../components/TypeBar";
+import { Slider } from "../components/Slider";
 import { fetchTypes, fetchBrands, fetchDevices } from "../http/deviceAPI";
 import Pages from "../components/Pages";
 
@@ -29,7 +30,12 @@ const Shop = observer(() => {
 
     return (
         <Container>
-            <Row className="mt-2">
+            <Row className="d-flex align-items-center justify-content-center mt-3">
+                <Col md={8}>
+                    <Slider></Slider>
+                </Col>
+            </Row>            
+            <Row className="mt-3">
                 <Col md={3}>
                     <TypeBar></TypeBar>
                 </Col>
