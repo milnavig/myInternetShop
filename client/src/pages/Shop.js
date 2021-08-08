@@ -22,9 +22,12 @@ const Shop = observer(() => {
 
     useEffect(() => {
         fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, 3).then((t) => {
+            console.log(t.rows);
             device.setDevices(t.rows);
             device.setTotalCount(t.count);
         });
+        console.log({...device.selectedBrand}.id);
+        console.log({...device.selectedType});
     }, [device.page, device.selectedType, device.selectedBrand]);
 
     return (

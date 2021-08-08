@@ -5,27 +5,34 @@ import { Card, Col, Image, Row } from 'react-bootstrap';
 import star from '../assets/star.png'
 import { useHistory } from 'react-router-dom';
 import { DEVICE_ROUTE } from '../utils/consts';
+import StarRatings from 'react-star-ratings';
 
 export const DeviceItem = observer(({device}) => {
     const history = useHistory();
     return (
-        <Col md={3} className="mt-3">
-            <Card style={{width: '150px', cursor: 'pointer'}} border={'light'} onClick={() => history.push(DEVICE_ROUTE + '/' + device.id)}>
-                <Image width={150} height={150} src={process.env.REACT_APP_API_URL + device.img}></Image>
-                <div className=" text-black-50 d-flex justify-content-between align-items-center mt-1">
-                    <div>Samsung</div>
-                    <div className="d-flex align-items-center">
-                        <div>
-                            {device.raiting}
-                        </div>
-                        <Image src={star} width={20} height={20}></Image>
-                    </div>
-                    
-                </div>
-                <div>
+        <Col md={3} className="mt-3" className="d-flex ">
+            
+            <Card style={{width: '300px', cursor: 'pointer'}} className="mt-4 mb-4 ms-2 me-2" onClick={() => history.push(DEVICE_ROUTE + '/' + device.id)}>
+                <Image width={'100%'} height={'auto'} src={process.env.REACT_APP_API_URL + device.img}>
+                </Image>
+                <Card.Body>
+                <Card.Title>{device.brand?.name}</Card.Title>
+                <Card.Text>
                     {device.name}
-                </div>
+                </Card.Text>
+                </Card.Body>
+                <Card.Footer>
                 
+                    <StarRatings
+                        rating={device.rating}
+                        starRatedColor="blue"
+                        numberOfStars={5}
+                        starHoverColor={'yellow'}
+                        name='rating'
+                        starDimension='20px'
+                        starSpacing='4px'
+                    />
+                </Card.Footer>
             </Card>
         </Col>
     );

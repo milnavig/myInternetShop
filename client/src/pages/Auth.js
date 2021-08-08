@@ -63,7 +63,7 @@ const Auth = observer(() => {
                             Have your own account? <NavLink to={LOGIN_ROUTE} >Login!</NavLink>
                         </div>
                         }
-                        <Button variant="outline-success" onClick={isLogin ? click : click}>{isLogin ? 'Enter' : 'Register'}</Button>
+                        <Button variant="outline-success" className="mt-2" onClick={isLogin ? click : click}>{isLogin ? 'Enter' : 'Register'}</Button>
                     </Row>
                     
                 </Form>

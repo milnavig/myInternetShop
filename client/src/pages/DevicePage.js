@@ -35,25 +35,28 @@ const DevicePage = observer(() => {
                     <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img}>
                     </Image>
                 </Col>
-                <Col md={4} className="flex flex-column align-items-center">
-                    <Row>
+                <Col md={4} className="d-flex flex-column align-items-center">
+                    <Row style={{height: '100%'}}>
                         <h2>{device.name}</h2>
+                        <div className="d-flex align-content-between flex-wrap">
+
+                            <StarRatings
+                                rating={isItLiked ? isItLiked.rating : device.rating}
+                                starRatedColor="blue"
+                                numberOfStars={5}
+                                changeRating={(rating) => likeDevice(rating)}
+                                starHoverColor={'yellow'}
+                                name='rating'
+                            />
+                        </div>
                         
-                        <StarRatings
-                            rating={isItLiked ? isItLiked.rating : device.rating}
-                            starRatedColor="blue"
-                            numberOfStars={5}
-                            changeRating={(rating) => likeDevice(rating)}
-                            starHoverColor={'yellow'}
-                            name='rating'
-                        />
                     </Row>
                 </Col>
                 <Col md={4}>
                     <Card className="d-flex flex-column align-items-center justify-content-around"
                     style={{width: 300, height: 300, fontSize: 32}}>
-                        <h3>{device.price}</h3>
-                        <Button variant="outline-dark">Add to basket</Button>
+                        <h3>{device.price + '₴'}</h3>
+                        <Button variant="outline-dark" onClick={() => context.user.setGoods(device)}>Add to basket</Button>
                     </Card>
                 </Col>
             </Row>

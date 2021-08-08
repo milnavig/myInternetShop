@@ -1,6 +1,6 @@
 const uuid = require('uuid');
 const path = require('path');
-const {Device, DeviceInfo} = require('../models/models');
+const {Device, DeviceInfo, Type, Brand} = require('../models/models');
 const APIError = require('../error/APIError');
 
 class DeviceController {
@@ -35,24 +35,25 @@ class DeviceController {
         let {brandId, typeId, limit, page} = req.query;
         page = page || 1;
         limit = limit || 9;
-        let offset = limit*(page - 1);
+        let offset = limit * (page - 1);
 
         let devices;
         if (!brandId && !typeId) {
             //devices = await Device.findAll({limit, offset});
-            devices = await Device.findAndCountAll({limit, offset}); // for pagination
+            devices = await Device.findAndCountAll({limit, offset,
+                include: {model: Brand, as: 'brand'}}); // for pagination
         }
         if (!brandId && typeId) {
             //devices = await Device.findAll({where: {typeId}, limit, offset});
-            devices = await Device.findAndCountAll({where: {typeId}, limit, offset});
+            devices = await Device.findAndCountAll({where: {typeId}, limit, offset, include: {model: Brand, as: 'brand'}});
         }
         if (brandId && !typeId) {
             //devices = await Device.findAll({where: {brandId}, limit, offset});
-            devices = await Device.findAndCountAll({where: {typeId}, limit, offset});
+            devices = await Device.findAndCountAll({where: {brandId}, limit, offset, include: {model: Brand, as: 'brand'}});
         }
         if (brandId && typeId) {
             //devices = await Device.findAll({where: {typeId, brandId}, limit, offset});
-            devices = await Device.findAndCountAll({where: {typeId}, limit, offset});
+            devices = await Device.findAndCountAll({where: {typeId, brandId}, limit, offset, include: {model: Brand, as: 'brand'}});
         }
 
         return res.json(devices);

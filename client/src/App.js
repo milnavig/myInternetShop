@@ -9,6 +9,7 @@ import { Context } from './index';
 import { check } from './http/userAPI';
 import { Spinner } from 'react-bootstrap';
 import Footer from './components/Footer';
+import Chat from './components/Chat';
 
 function App() {
   const { user } = useContext(Context);
@@ -32,6 +33,7 @@ function App() {
       <NavBar></NavBar>
       <AppRouter></AppRouter>
       <Footer></Footer>
+      <Chat></Chat>
     </BrowserRouter>
   );
 }

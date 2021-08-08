@@ -58,3 +58,39 @@ const start = async () => {
 }
 
 start();
+
+// websocket for chat
+
+const ws = require('ws');
+
+const wss = new ws.Server({
+  port: 5001,
+}, () => console.log('WebSocket server was launched'));
+
+wss.on('connection', function connection(ws) {
+  ws.id = Date.now();
+  console.log('New connection appeared');
+  ws.on('message', (message) => {
+    message = JSON.parse(message);
+    /*
+    switch(message.event) {
+      case 'message':
+        //ws.send(JSON.stringify(message));
+        broadcastMessage(message, null);
+        break;
+      case 'connection':
+        break;
+    }
+    */
+    broadcastMessage(message, ws.id);
+    console.log(message);
+  })
+});
+
+function broadcastMessage(message, id) {
+  wss.clients.forEach(client => {
+    if (id !== client.id) {
+      client.send(JSON.stringify(message))
+    }
+  })
+}

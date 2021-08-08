@@ -3,10 +3,12 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import { Context } from '../index';
 import { authRoutes, publicRoutes } from '../routes';
 import { SHOP_ROUTE } from '../utils/consts';
+import { observer } from "mobx-react-lite";
 
-const AppRouter = () => {
+const AppRouter = observer(() => {
     const {user} = useContext(Context);
     console.log(user);
+    console.log(user.isAuth);
     return (
         <Switch>
             {
@@ -22,6 +24,6 @@ const AppRouter = () => {
             <Redirect to={SHOP_ROUTE} />
         </Switch>
     );
-}
+});
 
 export default AppRouter;

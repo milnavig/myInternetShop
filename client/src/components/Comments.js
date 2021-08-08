@@ -23,6 +23,7 @@ export const Comments = observer((props) => {
 
     return (
         <div>
+            <h2>Comments</h2>
             { user.isAuth ?
             <>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
