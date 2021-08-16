@@ -13,11 +13,15 @@ const sequelize = require('./db');
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  credentials: true,
+  origin: process.env.CLIENT_URL
+}));
 app.use(express.json());
 // need cookieParser middleware before we can do anything with cookies
 app.use(cookieParser());
 
+/*
 // set a cookie
 app.use(function (req, res, next) {
   // check if client sent cookie
@@ -34,10 +38,12 @@ app.use(function (req, res, next) {
   } 
   next();
 });
+*/
 
 app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(fileupload({})); // image download
 app.use('/api', router);
+// middleware для обработки ошибок должен идти последним!!!
 app.use(errorHandler); // middleware for error handling
 
 app.get('/', function(req, res) {

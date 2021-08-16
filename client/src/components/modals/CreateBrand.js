@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react';
-import { observer } from "mobx-react-lite";
+import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { createBrand } from '../../http/deviceAPI';
 

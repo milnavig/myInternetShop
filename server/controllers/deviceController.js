@@ -76,7 +76,7 @@ class DeviceController {
                 where: {id}
             });
 
-            let new_rating = (rating + device.rating) / 2;
+            let new_rating = Math.floor((rating + device.rating) / 2);
 
             device = await Device.update({rating: new_rating},
                 { where: { id: id } });

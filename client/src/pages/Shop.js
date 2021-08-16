@@ -18,6 +18,8 @@ const Shop = observer(() => {
         fetchDevices(null, null, 1, 4).then((t) => {
             device.setDevices(t.rows);
             device.setTotalCount(t.count);
+
+            device.setDevicesForSlider(t.rows);
         });
     }, []);
 

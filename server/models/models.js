@@ -18,7 +18,14 @@ const User = sequelize.define('user', {
     role: {
         type: DataTypes.STRING,
         defaultValue: 'USER'
-    }
+    },
+    isActivated: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
+    activationLink: {
+        type: DataTypes.STRING
+    },
 });
 
 const Basket = sequelize.define('basket', {
@@ -72,6 +79,10 @@ const Comment = sequelize.define('comment', {
     timestamp: {type: DataTypes.DATE, defaultValue: DataTypes.NOW},
 });
 
+const Token = sequelize.define('token', {
+    refreshToken: {type: DataTypes.STRING, allowNull: false},
+});
+
 User.hasOne(Basket);
 Basket.belongsTo(User);
 
@@ -104,6 +115,8 @@ Comment.belongsTo(Device);
 User.hasMany(Comment);
 Comment.belongsTo(User);
 
+User.hasOne(Token);
+Token.belongsTo(User);
 
 module.exports = {
     User,
@@ -115,5 +128,6 @@ module.exports = {
     Rating,
     TypeBrand,
     DeviceInfo,
-    Comment
+    Comment,
+    Token
 }

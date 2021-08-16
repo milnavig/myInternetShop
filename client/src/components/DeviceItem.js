@@ -1,8 +1,5 @@
-import { useContext } from 'react';
 import { observer } from "mobx-react-lite";
-import { Context } from "../index";
-import { Card, Col, Image, Row } from 'react-bootstrap';
-import star from '../assets/star.png'
+import { Card, Col, Image } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { DEVICE_ROUTE } from '../utils/consts';
 import StarRatings from 'react-star-ratings';

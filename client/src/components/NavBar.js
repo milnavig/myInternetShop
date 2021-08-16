@@ -2,30 +2,32 @@ import { useContext } from 'react';
 import { Context } from "../index";
 import { Navbar, Container, Nav, Button, NavDropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { ADMIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE, ABOUTUS_ROUTE, GALLERY_ROUTE, BASKET_ROUTE } from '../utils/consts';
+import { ADMIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE, ABOUTUS_ROUTE, BASKET_ROUTE } from '../utils/consts';
 import { observer } from 'mobx-react-lite';
 import { useHistory } from 'react-router';
 import flower from '../assets/flower.svg';
 import home from '../assets/home.svg';
 import cart from '../assets/cart.svg';
 import { LinkContainer } from 'react-router-bootstrap';
+import { logout } from '../http/userAPI';
 
 const NavBar = observer(() => {
     const {user} = useContext(Context);
     const history = useHistory();
     console.log(user.user);
 
-    const logout = () => {
+    const logout_action = async () => {
+        await logout();
         user.setUser({});
         user.setIsAuth(false);
         localStorage.removeItem('token');
     }
 
     return (
-        <Navbar variant="dark" style={{backgroundColor: '#95D2EE'}} collapseOnSelect expand="lg">
+        <Navbar variant="dark" style={{backgroundColor: process.env.REACT_APP_COLOR_3}} collapseOnSelect expand="lg">
             <Container>
                 <NavLink to={SHOP_ROUTE} style={{textDecoration: 'none'}} className="d-flex align-items-center">
-                    <img src={flower} style={{width: 50, height: 50}} title="Flower Shop"></img>
+                    <img src={flower} style={{width: 50, height: 50}} title="Internet Shop"></img>
                     <div style={{paddingLeft: 10, color: '#fff', fontSize: 28, alignItems: 'center'}}>InternetShop</div>
                 </NavLink>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -54,7 +56,7 @@ const NavBar = observer(() => {
                 {
                     user.isAuth ? 
                     <Nav className="ms-auto p-2 bd-highlight" style={{color: 'white'}}>
-                        <Button variant={"outline-light"} onClick={logout} style={{margin: 3}}>Log out</Button>
+                        <Button variant={"outline-light"} onClick={logout_action} style={{margin: 3}}>Log out</Button>
                         { user.user.role === 'ADMIN' ? <Button variant={"outline-light"} onClick={() => history.push(ADMIN_ROUTE)} style={{margin: 3}}>Admin dashboard</Button> : undefined}
                     </Nav>
                     :

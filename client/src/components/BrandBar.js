@@ -9,7 +9,7 @@ export const BrandBar = observer(() => {
         <ListGroup horizontal>
             {device.brands.map(brand =>
                 <ListGroup.Item key={brand.id} onClick={() => device.selectedBrand.id === brand.id ? device.setSelectedBrand({}) : device.setSelectedBrand(brand)}
-                active={device.selectedBrand.id === brand.id}
+                active={device.selectedBrand.id === brand.id} className={"barItem"}
                 >{brand.name}</ListGroup.Item>
             )}
         </ListGroup>

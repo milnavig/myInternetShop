@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter} from 'react-router-dom';
 import AppRouter from './components/AppRouter';
@@ -13,19 +12,27 @@ import Chat from './components/Chat';
 
 function App() {
   const { user } = useContext(Context);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    check().then((data) => {
-      user.setUser(true);
-      user.setIsAuth(true);
-    }).finally(() => {
+    if (localStorage.getItem('token')) {
+      check().then((data) => {
+        user.setUser(data); // changed
+        user.setIsAuth(true);
+      }).finally(() => {
+        setLoading(false);
+      })
+    } else {
       setLoading(false);
-    })
+    }
   }, []);
 
   if(loading) {
-    return <Spinner animation="grow"></Spinner>
+    return (
+      <div className="row d-flex justify-content-center align-content-center" style={{height: 300}}> 
+        <Spinner animation="border"></Spinner>
+      </div>
+    )
   }
 
   return (

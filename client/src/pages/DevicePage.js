@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Card, Col, Container, Image, Row, Table } from "react-bootstrap";
-import star from '../assets/star.png';
 import { useParams } from 'react-router-dom';
 import { fetchOneDevice, sendDeviceRating } from "../http/deviceAPI";
 import StarRatings from 'react-star-ratings';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../index';
 import { Comments } from '../components/Comments';
+import style from '../css/DevicePage.module.css';
 
 const DevicePage = observer(() => {
     /*
@@ -14,7 +14,7 @@ const DevicePage = observer(() => {
     const description = [{}, {}]
     */
     let context = useContext(Context);
-    let [device, setDevice] = useState({info: [], img: 'test'});
+    let [device, setDevice] = useState({info: [], img: ''});
     const params = useParams();
     console.log(params);
     let isItLiked = context.device.likedDevice.find(el => el.id === params.id);
@@ -30,7 +30,7 @@ const DevicePage = observer(() => {
 
     return (
         <Container className={'mt-3'}>
-            <Row>
+            <Row className={style.displayColumn}>
                 <Col md={4}>
                     <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img}>
                     </Image>

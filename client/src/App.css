@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.barItem.active {
+  background-color: #335C81 !important;
+  border-color: #335C81 !important;
+}
+
+.page-item.active .page-link {
+  background-color: #335C81 !important;
+  border-color: #335C81 !important;
+}
