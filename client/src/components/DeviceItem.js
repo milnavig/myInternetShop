@@ -10,7 +10,7 @@ export const DeviceItem = observer(({device}) => {
         <Col md={3} className="mt-3" className="d-flex ">
             
             <Card style={{width: '300px', cursor: 'pointer'}} className="mt-4 mb-4" onClick={() => history.push(DEVICE_ROUTE + '/' + device.id)}>
-                <Image width={'100%'} height={'auto'} src={process.env.REACT_APP_API_URL + device.img}>
+                <Image width={'100%'} height={'180px'} src={process.env.REACT_APP_API_URL + device.img}>
                 </Image>
                 <Card.Body>
                 <Card.Title>{device.brand?.name}</Card.Title>

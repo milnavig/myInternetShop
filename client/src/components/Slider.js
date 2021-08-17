@@ -8,7 +8,7 @@ export const Slider = observer(() => {
     //console.log({...device.devices[0]?.brand}?.name);
 
     return (
-        <Carousel className="carousel-dark" style={{height:'450px', minHeight:300}} nextLabel="" prevLabel="" >
+        <Carousel className="carousel-dark" style={{height: '450px', minHeight: 300}} nextLabel="" prevLabel="" >
             {device.devicesForSlider.map(i =>
                 <Carousel.Item style={{height:'450px', minHeight:300}} key={i.id}>
                     <img

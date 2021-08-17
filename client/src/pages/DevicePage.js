@@ -21,6 +21,7 @@ const DevicePage = observer(() => {
 
     useEffect(() => {
         fetchOneDevice(params.id).then(d => setDevice(d));
+        window.scrollTo(0, 0);
     }, []);
 
     function likeDevice(rating) {
