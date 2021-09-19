@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <Navbar variant="dark" style={{backgroundColor: process.env.REACT_APP_COLOR_3}} collapseOnSelect expand="lg">
             <Container>
-                <NavLink to={SHOP_ROUTE} style={{textDecoration: 'none'}} className="d-flex align-items-center">
+                <NavLink to={process.env.PUBLIC_URL + SHOP_ROUTE} style={{textDecoration: 'none'}} className="d-flex align-items-center">
                     <img src={flower} style={{width: 50, height: 50}} title="Flower Shop"></img>
                     <div style={{paddingLeft: 10, color: '#fff', fontSize: 28, alignItems: 'center'}}>InternetShop</div>
                 </NavLink>

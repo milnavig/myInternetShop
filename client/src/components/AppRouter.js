@@ -12,15 +12,15 @@ const AppRouter = observer(() => {
         <Switch>
             {
                 user.isAuth && authRoutes.map(({path, Component}) => {
-                    return <Route key={path} path={path} component={Component} exact></Route>
+                    return <Route key={path} path={process.env.PUBLIC_URL + path} component={Component} exact></Route>
                 })
             }
             {
                 publicRoutes.map(({path, Component}) => {
-                    return <Route key={path} path={path} component={Component} exact></Route>
+                    return <Route key={path} path={process.env.PUBLIC_URL + path} component={Component} exact></Route>
                 })
             }
-            <Redirect to={SHOP_ROUTE} />
+            <Redirect to={process.env.PUBLIC_URL + SHOP_ROUTE} />
         </Switch>
     );
 });

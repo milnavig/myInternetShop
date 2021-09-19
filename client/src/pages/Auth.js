@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 const Auth = observer(() => {
     let { user } = useContext(Context);
     const location = useLocation();
-    const isLogin = location.pathname === LOGIN_ROUTE;
+    const isLogin = ('/' + location.pathname.split('/')[2]) === LOGIN_ROUTE;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
@@ -57,11 +57,11 @@ const Auth = observer(() => {
                     <Row className="d-flex justify-content-between mt-4">
                         { isLogin ? 
                         <div style={{display: 'inline'}}>
-                            Not registered yet? <NavLink to={REGISTRATION_ROUTE} >Register!</NavLink>
+                            Not registered yet? <NavLink to={process.env.PUBLIC_URL + REGISTRATION_ROUTE} >Register!</NavLink>
                         </div>
                         :
                         <div style={{display: 'inline'}}>
-                            Have your own account? <NavLink to={LOGIN_ROUTE} >Login!</NavLink>
+                            Have your own account? <NavLink to={process.env.PUBLIC_URL + LOGIN_ROUTE} >Login!</NavLink>
                         </div>
                         }
                         <Button variant="outline-success" className="mt-2" onClick={isLogin ? click : click}>{isLogin ? 'Enter' : 'Register'}</Button>

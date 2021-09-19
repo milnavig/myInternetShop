@@ -18,7 +18,7 @@ const authInterceptor = config => {
 $authHost.interceptors.request.use(authInterceptor);
 
 $authHost.interceptors.response.use((config) => { return config; }, async (error) => {
-    if (error.response.status === 401 && error.config && !error.config._isRetry) {
+    if (error.response?.status === 401 && error.config && !error.config._isRetry) {
         const originalRequest = error.config;
         originalRequest._isRetry = true;
         const { data } = await axios.get('api/user/refresh', {

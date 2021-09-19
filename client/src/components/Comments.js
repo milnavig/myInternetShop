@@ -37,7 +37,7 @@ export const Comments = observer((props) => {
             :
             <Alert variant='primary'>
                 You need to login or register to comment this device. {' '}
-                <NavLink to={LOGIN_ROUTE} style={{textDecoration: 'none'}}>
+                <NavLink to={process.env.PUBLIC_URL + LOGIN_ROUTE} style={{textDecoration: 'none'}}>
                     Login
                 </NavLink>
             </Alert>

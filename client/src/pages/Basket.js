@@ -14,7 +14,7 @@ const Basket = observer(() => {
         <Container>
             <h2 className="mt-4">My basket: </h2>
             { user.goods.map(el => 
-            <Card style={{width: '250px', cursor: 'pointer'}} className="mt-4 mb-4" onClick={() => history.push(DEVICE_ROUTE + '/' + el.id)}>
+            <Card style={{width: '250px', cursor: 'pointer'}} className="mt-4 mb-4" onClick={() => history.push(process.env.PUBLIC_URL + DEVICE_ROUTE + '/' + el.id)}>
                 <Image width={'100%'} height={'auto'} src={process.env.REACT_APP_API_URL + el.img}>
                     </Image>
                 <Card.Body>

@@ -26,14 +26,14 @@ const NavBar = observer(() => {
     return (
         <Navbar variant="dark" style={{backgroundColor: process.env.REACT_APP_COLOR_3}} collapseOnSelect expand="lg">
             <Container>
-                <NavLink to={SHOP_ROUTE} style={{textDecoration: 'none'}} className="d-flex align-items-center">
+                <NavLink to={process.env.PUBLIC_URL + SHOP_ROUTE} style={{textDecoration: 'none'}} className="d-flex align-items-center">
                     <img src={flower} style={{width: 50, height: 50}} title="Internet Shop"></img>
                     <div style={{paddingLeft: 10, color: '#fff', fontSize: 28, alignItems: 'center'}}>InternetShop</div>
                 </NavLink>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" style={{fontSize: 18}}>
                     <Nav className={'ms-3 d-flex justify-content-center'}>
-                        <LinkContainer to={SHOP_ROUTE}>
+                        <LinkContainer to={process.env.PUBLIC_URL + SHOP_ROUTE}>
                             <Nav.Link><img src={home} style={{width: 13, height: 13, marginRight: 3}} title="Home"></img>Home</Nav.Link>
                         </LinkContainer>
                        
@@ -45,10 +45,10 @@ const NavBar = observer(() => {
                             <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                         </NavDropdown>
                         
-                        <LinkContainer to={BASKET_ROUTE}>
+                        <LinkContainer to={process.env.PUBLIC_URL + BASKET_ROUTE}>
                             <Nav.Link><img src={cart} style={{width: 13, height: 13, marginRight: 3}} title="Cart"></img>Cart</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to={ABOUTUS_ROUTE}>
+                        <LinkContainer to={process.env.PUBLIC_URL + ABOUTUS_ROUTE}>
                             <Nav.Link>About Us</Nav.Link>
                         </LinkContainer>
                     </Nav>
@@ -61,8 +61,8 @@ const NavBar = observer(() => {
                     </Nav>
                     :
                     <Nav className="ms-auto p-2 bd-highlight" style={{color: 'white'}}>
-                        <Button variant={"outline-light"} onClick={() => history.push(LOGIN_ROUTE)} style={{margin: 3}}>Sign in</Button>
-                        <Button variant={"outline-dark"} onClick={() => history.push(REGISTRATION_ROUTE)} style={{margin: 3}}>Sign up</Button>
+                        <Button variant={"outline-light"} onClick={() => history.push(process.env.PUBLIC_URL + LOGIN_ROUTE)} style={{margin: 3}}>Sign in</Button>
+                        <Button variant={"outline-dark"} onClick={() => history.push(process.env.PUBLIC_URL + REGISTRATION_ROUTE)} style={{margin: 3}}>Sign up</Button>
                     </Nav>
                 }
                 </Navbar.Collapse>
